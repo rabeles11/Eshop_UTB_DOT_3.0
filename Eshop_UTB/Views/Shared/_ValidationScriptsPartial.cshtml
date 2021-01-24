@@ -1,0 +1,23 @@
+﻿@using System.Globalization
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+@{
+	string numberGroupSeparator = NumberFormatInfo.CurrentInfo.NumberGroupSeparator;
+	string numberDecimalSeparator = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
+
+	//for RegEx -> \. means dot (dot has special meaning in RegEx) ; space and ',' can be included without problems (I hope :-))
+	if (numberGroupSeparator.Length > 0 && numberGroupSeparator[0] == '.')
+	{
+		numberGroupSeparator = "\\.";
+	}
+	if (numberDecimalSeparator.Length > 0 && numberDecimalSeparator[0] == '.')
+	{
+		numberDecimalSeparator = "\\.";
+	}
+}
+<script>
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /^(?:-?\d+|-?\d{1,3}(?:@numberGroupSeparator\d{3})+)?(?:@numberDecimalSeparator\d+)?$/.test(value);
+    }
+</script>

@@ -1,0 +1,50 @@
+﻿@model Eshop_UTB.Models.Order
+
+@{
+	ViewData["Title"] = "Detail Reklamace";
+}
+
+
+<h1>Detail Reklamace</h1>
+@{
+
+	<h1>Details</h1>
+
+	<div>
+		<hr />
+		<dl class="row">
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.TotalPrice)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.TotalPrice)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.OrderNumber)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.OrderNumber)
+			</dd>
+		</dl>
+	</div>
+	<form asp-action="PopisReklamace" enctype="multipart/form-data" method="post">
+		<div class="form-group col-sm-4">
+			<input type="hidden" asp-for="@Model.OrderNumber" class="form-control">
+			<input type="hidden" asp-for="@Model.TotalPrice" class="form-control">
+			
+			
+			<div class="form-group">
+				<label asp-for="@Model.PopisReklamace"></label>
+				<textarea asp-for="@Model.PopisReklamace" class="form-control" placeholder="Popiste problém"></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+
+
+
+	<div>
+		<a asp-action="Index">Back to List</a>
+	</div>
+}

@@ -1,0 +1,52 @@
+﻿@model CarouselProductViewModel
+@{
+	ViewData["Title"] = "Product - Select";
+}
+<h1>@ViewData["Title"]</h1>
+<br />
+<a asp-action="Create">Create product item</a>
+<br />
+<br />
+<p>ALL items in products</p>
+@{
+	if (Model != null && Model.Products != null && Model.Products.Count > 0)
+	{
+		<table class="table-responsive" style="width:100%">
+			<tr>
+				<th class="col-sm-1">@Html.DisplayNameFor(mod => mod.Products[0].ID)</th>
+				<th class="col-sm-1">@Html.DisplayNameFor(mod => mod.Products[0].ProductName)</th>
+				<th class="col-sm-2">@Html.DisplayNameFor(mod => mod.Products[0].ImageSrc)</th>
+				<th class="col-sm-4">@Html.DisplayNameFor(mod => mod.Products[0].ImageAlt)</th>
+				<th class="col-sm-2">@Html.DisplayNameFor(mod => mod.Products[0].ProductDescription)</th>
+				<th class="col-sm-4">@Html.DisplayNameFor(mod => mod.Products[0].price)</th>
+				<th class="col-sm-1">Edit</th>
+				<th class="col-sm-1">Delete</th>
+			</tr>
+			@{
+				foreach (var productItem in Model.Products)
+				{
+						<tr>
+							<td class="col-sm-1">@productItem.ID</td>
+							<td class="col-sm-2">@productItem.ProductName</td>
+							<td class="col-sm-2">@productItem.ImageSrc</td>
+							<td class="col-sm-4">@productItem.ImageAlt</td>
+							<td class="col-sm-2">@productItem.ProductDescription</td>
+							<td class="col-sm-2">@productItem.price</td>
+							<td class="col-sm-4"><a asp-action="Edit" asp-route-Id="@productItem.ID">Edit</a></td>
+							<td class="col-sm-4"><a asp-action="Delete" asp-route-Id="@productItem.ID" onclick="return ConfirmDelete()">Delete</a></td>
+
+
+						</tr>
+				}
+			}
+		</table>
+	}
+	else
+	{
+		<h2>Carousel is empty!!</h2>
+	}
+}
+@section Scripts
+{
+	<script src="~/js/Scripts.js"></script>
+}

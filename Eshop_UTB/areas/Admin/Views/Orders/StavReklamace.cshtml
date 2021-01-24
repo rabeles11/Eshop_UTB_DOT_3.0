@@ -1,0 +1,64 @@
+﻿@model Eshop_UTB.Models.Order
+
+@{
+	ViewData["Title"] = "Stav Reklamace";
+}
+
+<h1>Stav Reklamace</h1>
+
+<div>
+	<h4>Order</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.OrderNumber)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.OrderNumber)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.TotalPrice)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.TotalPrice)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.User)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.User.Id)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.DateTimeCreated)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.DateTimeCreated)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.StavReklamace)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.StavReklamace)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.PopisReklamace)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.PopisReklamace)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.DuvodReklamace)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.DuvodReklamace)
+		</dd>
+	</dl>
+	<a style="font-size:large">Vyřidit Reklamaci</a>  :  
+	<a asp-action="ReklamaceDecline" asp-route-id="@Model.ID">Zamítnout</a>  |
+	<a asp-action="ReklamaceAccept" asp-route-id="@Model.ID">Potvrdit</a>  |
+	<a asp-action="ReklamaceFinished" asp-route-id="@Model.ID">Dokončit Reklamaci</a>
+</div>
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+

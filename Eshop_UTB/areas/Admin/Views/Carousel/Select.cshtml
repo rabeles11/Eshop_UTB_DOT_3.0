@@ -1,0 +1,48 @@
+﻿@model CarouselProductViewModel
+@{
+	ViewData["Title"] = "Carousel - Select";
+}
+<h1>@ViewData["Title"]</h1>
+<br />
+<a asp-action="Create">Create Carousel Item</a>
+<br />
+<br />
+<p>ALL items in carousel</p>
+@{
+	if (Model != null && Model.Carousels != null && Model.Carousels.Count > 0)
+	{
+		<table  class="table-responsive" style="width:100%">
+			<tr>
+				<th class="col-sm-1">@Html.DisplayNameFor(mod => mod.Carousels[0].ID)</th>
+				<th class="col-sm-2">@Html.DisplayNameFor(mod => mod.Carousels[0].ImageSrc)</th>
+				<th class="col-sm-2">@Html.DisplayNameFor(mod => mod.Carousels[0].CarouselContent)</th>
+				<th class="col-sm-4">@Html.DisplayNameFor(mod => mod.Carousels[0].ImageAlt)</th>
+				<th class="col-sm-1">Edit</th>
+				<th class="col-sm-1">Delete</th>
+			</tr>
+			@{
+				foreach (var carouselItem in Model.Carousels)
+				{
+					<tr>
+						<td class="col-sm-1">@carouselItem.ID</td>
+						<td class="col-sm-2">@carouselItem.ImageSrc</td>
+						<td class="col-sm-2">@carouselItem.CarouselContent</td>
+						<td class="col-sm-4">@carouselItem.ImageAlt</td>
+						<td class="col-sm-4"><a asp-action="Edit" asp-route-Id="@carouselItem.ID">Edit</a></td>
+						<td class="col-sm-4"><a asp-action="Delete" asp-route-Id="@carouselItem.ID" onclick="return ConfirmDelete()">Delete</a></td>
+
+
+					</tr>
+				}
+			}
+		</table>
+	}
+	else
+	{
+		<h2>Carousel is empty!!</h2>
+	}
+}
+@section Scripts
+{
+	<script src="~/js/Scripts.js"></script>
+}

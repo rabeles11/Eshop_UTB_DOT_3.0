@@ -1,0 +1,50 @@
+﻿@model CarouselProductViewModel
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+@section Styles
+{
+	<link rel="stylesheet" href="/css/Style.css?refreshcss=1" type="text/css" />
+	<link href="~/css/shop-template.css" rel="stylesheet">
+
+}
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+	<div class="carousel-inner carousel-img-ratio">
+		@{
+			for (int i = 0; i < Model.Carousels.Count; i++)
+			{
+				string classDiv = "carousel-item";
+
+				if (i == 0)
+				{
+					classDiv = "carousel-item active";
+				}
+				<div class="@classDiv">
+					<img src="@Model.Carousels[i].ImageSrc" alt="@Model.Carousels[i].ImageAlt" class="card-img" />
+
+				</div>
+			}
+		}
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+<br>
+<h1 style="text-align:center">Products</h1>
+<br>
+<partial name="../Products/ProductsPartial" />
+@section Scripts {
+	<environment include="Development">
+		<script src="~/js/Product.js"></script>
+	</environment>
+	<environment exclude="Development">
+		<script src="~/js/Product.min.js"></script>
+	</environment>
+}

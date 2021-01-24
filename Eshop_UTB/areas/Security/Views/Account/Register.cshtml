@@ -1,0 +1,101 @@
+﻿@model RegisterViewModel
+@{
+	ViewData["Title"] = "Register";
+}
+@section Styles
+{
+	<link rel="stylesheet" href="~/css/Login_RegisterForm.css" type="text/css" />
+
+}
+@section Scripts {
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+	<script src="~/js/Validation/UniqueChar.js"></script>
+}
+<form class="form-horizontal" action='' method="POST">
+
+	<fieldset>
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<div id="legend">
+			<legend class="">Register</legend>
+		</div>
+		<div class="control-group">
+			<!-- Username -->
+			<label asp-for="@Model.Username"></label>
+			<div class="controls">
+				<input asp-for="@Model.Username" placeholder="" class="input-xlarge">
+				<p class="help-block">Username can contain any letters or numbers, without spaces</p>
+				<span asp-validation-for="@Model.Username" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<!-- FirstName -->
+			<label asp-for="@Model.FirstName"></label>
+			<div class="controls">
+				<input asp-for="@Model.FirstName" placeholder="" class="input-xlarge">
+				<p class="help-block">Firstname can contain any letters or numbers, without spaces</p>
+				<span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="control-group">
+			<!-- LastName -->
+			<label asp-for="@Model.LastName"></label>
+			<div class="controls">
+				<input asp-for="@Model.LastName" placeholder="" class="input-xlarge">
+				<p class="help-block">Lastname can contain any letters or numbers, without spaces</p>
+				<span asp-validation-for="@Model.LastName" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="control-group">
+			<!-- Phone -->
+			<label asp-for="@Model.PhoneNumber"></label>
+			<div class="controls">
+				<input asp-for="@Model.PhoneNumber" placeholder="" class="input-xlarge">
+				<p class="help-block">The number must be in the format "+420 123 123 123"</p>
+				<span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<!-- E-mail -->
+			<label asp-for="@Model.Email"></label>
+			<div class="controls">
+				<input asp-for="@Model.Email" placeholder="" class="input-xlarge">
+				<p class="help-block">Please provide your E-mail</p>
+				<span asp-validation-for="@Model.Email" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<!-- Password-->
+			<label asp-for="@Model.Password"></label>
+			<div class="controls">
+				<input id="Password" asp-for="@Model.Password" placeholder="" class="input-xlarge">
+				<p class="help-block">Password should be at least 6 unique characters</p>
+				<span asp-validation-for="@Model.Password" class="text-danger"></span>
+			</div>
+
+		</div>
+
+		<div class="control-group">
+			<!-- Password -->
+			<label asp-for="@Model.RepeatedPassword">Password(repeat)</label>
+			<div class="controls">
+				<input asp-for="@Model.RepeatedPassword" placeholder="" class="input-xlarge">
+				<p class="help-block">Please confirm password</p>
+				<span asp-validation-for="@Model.RepeatedPassword" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<!-- Button -->
+			<div class="controls">
+				<button class="btn btn-primary" asp-action="Register" method="post">Register</button>
+				<br />
+				<p>Already has account ?<a asp-action="Login"> Log in</a></p>
+			</div>
+		</div>
+	</fieldset>
+</form>
+

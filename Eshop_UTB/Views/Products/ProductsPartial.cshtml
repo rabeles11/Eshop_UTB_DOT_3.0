@@ -1,0 +1,70 @@
+﻿@model CarouselProductViewModel
+@{
+	ViewData["Title"] = "Product Partial";
+}
+
+@section Styles
+{
+	<link rel="stylesheet" href="/css/Style.css" />
+	<link href="~/css/shop-template.css" rel="stylesheet">
+}
+
+
+<div class="container">
+
+	<div class="row">
+
+
+
+		<div class="col-lg-12">
+			<div>
+				<h1 class="my-4 text-center">Products</h1>
+				<div class="list-group flex-sm-row justify-content-around">
+
+					<a href="#" class="list-group-item ">Category 1</a>
+					<a href="#" class="list-group-item">Category 2</a>
+					<a href="#" class="list-group-item">Category 3</a>
+					<a href="#" class="list-group-item">Category 4</a>
+					<a href="#" class="list-group-item">Category 5</a>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				@{
+					foreach (var productItem in Model.Products)
+					{
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="card h-100">
+								<div class="div.embbed-responsive">
+									<a asp-area="" asp-controller="Products" asp-action="Detail" asp-route-id="@productItem.ID"><img class="card-img-top" src="@productItem.ImageSrc" alt="@productItem.ImageAlt"></a>
+								</div>
+								<div class="card-body">
+									<h4 class="card-title">
+										<a asp-area="" asp-controller="Products" asp-action="Detail()" asp-route-id="@productItem.ID">@productItem.ProductName</a>
+									</h4>
+									<h5>$@productItem.price</h5>
+									<p class="card-text">@productItem.ProductDescription</p>
+								</div>
+								<div class="card-footer">
+									<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+									<input type="button" class="btn-success" value="Buy" style="font-size:1.4em;text-align:center"
+										   onclick="Buy(@productItem.ID, '@Url.Action("AddOrderItemsToSession", "CustomerOrderNotCart", new { Area = "Customer" })', '#total_price', '@System.Globalization.CultureInfo.CurrentCulture.Name')" />
+								</div>
+							</div>
+						</div>
+					}
+				}
+
+
+
+			</div>
+			<!-- /.row -->
+
+		</div>
+		<!-- /.col-lg-9 -->
+
+	</div>
+	<!-- /.row -->
+
+</div>
+<!-- /.container -->

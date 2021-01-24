@@ -1,0 +1,51 @@
+﻿@using Eshop_UTB.areas.Admin.Controllers;
+@model Product
+
+@{ if (String.IsNullOrWhiteSpace(ViewBag.Action) == false)
+	{
+
+		<form asp-action="@ViewBag.Action" enctype="multipart/form-data" method="post">
+			<div class="form-group col-sm-4">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				@{ if (@ViewBag.Action == nameof(ProductController.Edit))
+					{
+						<input type="hidden" asp-for="@Model.ID" class="form-control">
+					}
+				}
+
+				<div class="form-group">
+					<label asp-for="@Model.ProductName"></label>
+					<input asp-for="@Model.ProductName" class="form-control" placeholder="Enter product Name">
+					<span asp-validation-for="@Model.ProductName" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.Image"></label>
+					<input  id="fileupload" asp-for="@Model.Image" accept="image/*" class="form-inline">
+					<span asp-validation-for="@Model.Image" class="text-danger"></span>
+					<input  type = "hidden"  value="/" asp-for="@Model.ImageSrc" class="form-control">
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.ImageAlt"></label>
+					<input asp-for="@Model.ImageAlt" class="form-control" placeholder="ImageAlt">
+					<span asp-validation-for="@Model.ImageAlt" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.ProductDescription"></label>
+					<input asp-for="@Model.ProductDescription" class="form-control" placeholder="ProductDescription">
+					<span asp-validation-for="@Model.ProductDescription" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="@Model.price"></label>
+					<input asp-for="@Model.price" class="form-control" placeholder="price of product">
+					<span asp-validation-for="@Model.price" class="text-danger"></span>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</form>
+	}
+	else
+	{
+		<h2>Form action is not set</h2>
+	}
+}
